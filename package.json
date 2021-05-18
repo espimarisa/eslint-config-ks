@@ -5,7 +5,7 @@
   "author": "sysdotini <espi@riseup.net> (https://espi.me)",
   "license": "MIT",
   "homepage": "https://github.com/sysdotini/eslint-config",
-  "main": "dist/src/index.js",
+  "main": "index.js",
   "bugs": {
     "url": "https://github.com/sysdotini/eslint-config"
   },
