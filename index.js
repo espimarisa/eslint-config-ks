@@ -6,7 +6,7 @@ module.exports = {
   },
 
   root: true,
-  ignorePatterns: ["./dist/", "./node_modules/"],
+  // ignorePatterns: ["./dist/"],
 
   parserOptions: {
     sourceType: "module",
