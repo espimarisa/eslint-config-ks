@@ -25,16 +25,31 @@ npm i --save-dev @sysdotini/eslint-config
 
 Once all of the modules are installed, you can add my config to your eslint config file. Additionally, you can expand upon it as you would any other config.
 
+I prefer putting ESLint configs in my package.json to reduce the amount of clutter.
+
+## package.json
+
+Append these keys to your existing package.json. Remove the comments.
+
+```JSON
+"eslintConfig": {
+  "extends": "@sysdotini/eslint-config",
+  // Your custom rules
+  "rules": {}
+},
+
+// Ignore patterns following eslintIgnore spec
+// You can omit this and use .eslintignore if you really want to.
+"eslintIgnore": ["dist", "node_modules"]
+```
+
 ## .eslintrc/eslintrc.json
 
 ```JSON
 {
   "extends": "@sysdotini/eslint-config",
-  // Make sure you add ./dist if you're using TS!
-  "ignorePatterns": ["./dist/", "./node_modules/"],
-  "rules": {
-    // Your custom rules
-  },
+  // Your custom rules
+  "rules": {}
 }
 ```
 
@@ -43,43 +58,22 @@ Once all of the modules are installed, you can add my config to your eslint conf
 ```JS
 module.exports = {
   extends: "@sysdotini/eslint-config",
-  // Make sure you add ./dist if you're using TS!
-  ignorePatterns: ["./dist/", "./node_modules/"],
-  rules: {
-    // Your custom rules
-  },
+  // Your custom rules
+  rules: {},
 };
-```
-
-## package.json
-
-```JSON
-"eslintConfig": {
-  "extends": "@sysdotini/eslint-config",
-  // Make sure you add ./dist if you're using TS!
-  "ignorePatterns": ["./dist/", "./node_modules/"],
-  "rules": {
-    // Your custom rules
-  },
-}
 ```
 
 # Ignoring
 
-As ESLint doesn't use items in ignoredPatterns for sharable configs, you'll have to set this up yourself.
+As ESLint doesn't use items in ignoredPatterns for sharable configs, you'll have to set this up yourself (if you are using .eslintrc or .eslintrc.js - for package.json, see above.)
 
 ## .eslintignore
 
 ```sh
-./node_modules/ # This *should* always be ignored but it's good to be sure
-./dist/ # TypeScript output
-```
-
-## package.json
-
-```JSON
-// Add this key to your package.json
-"eslintIgnore": ["./dist/", "./node_modules/"],
+# https://eslint.org/docs/user-guide/configuring/ignoring-code
+node_modules # This *should* always be ignored but it's good to be sure
+dist # TypeScript output
+# anything else you want to ignore
 ```
 
 # License
