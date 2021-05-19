@@ -28,6 +28,18 @@
     "strict",
     "prettier"
   ],
+  "prettier": {
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "proseWrap": "preserve",
+    "quoteProps": "consistent",
+    "trailingComma": "all",
+    "printWidth": 120,
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false,
+    "useTabs": false
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
