@@ -1,0 +1,27 @@
+name: "Dependabot Automerge"
+
+on:
+  pull_request:
+
+jobs:
+  worker:
+    runs-on: ubuntu-20.04
+
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    steps:
+      - name: "Wait for status checks"
+        id: waitforstatuschecks
+        uses: WyriHaximus/github-action-wait-for-status@v1.3
+        with:
+          ignoreActions: worker,WIP
+          checkInterval: 300
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Automerge"
+        uses: pascalgn/automerge-action@v0.13.1
+        if: steps.waitforstatuschecks.outputs.status == 'success'
+        env:
+          MERGE_LABELS: "update"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_DELETE_BRANCH: true
