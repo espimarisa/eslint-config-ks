@@ -11,6 +11,9 @@ My strict and opinionated sharable ESLint config with built-in TypeScript and Pr
 # Installation
 
 ```sh
+# Replace npm with yarn and i with add
+# Or, if you're based, use pnpm : )
+
 # If you only want JS support
 npm i --save-dev eslint prettier typescript eslint-config-prettier eslint-plugin-prettier
 
@@ -24,8 +27,6 @@ npm i --save-dev @sysdotini/eslint-config
 # Usage
 
 Once all of the modules are installed, you can add my config to your eslint config file. Additionally, you can expand upon it as you would any other config.
-
-I prefer putting ESLint configs in my package.json to reduce the amount of clutter.
 
 ## package.json
 
@@ -45,6 +46,8 @@ Append these keys to your existing package.json. Remove the comments.
 
 ## .eslintrc/eslintrc.json
 
+Make a .eslintrc and put this in it. The .json is optional.
+
 ```JSON
 {
   "extends": "@sysdotini/eslint-config",
@@ -54,6 +57,8 @@ Append these keys to your existing package.json. Remove the comments.
 ```
 
 ## .eslintrc.js
+
+Make a .eslintrc.js file and put this in it.
 
 ```JS
 module.exports = {
