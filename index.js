@@ -6,7 +6,6 @@ module.exports = {
   },
 
   root: true,
-  // ignorePatterns: ["./dist/"],
 
   parserOptions: {
     sourceType: "module",
@@ -81,7 +80,6 @@ module.exports = {
         "prettier",
       ],
 
-      // Enable if you need jsx support
       parserOptions: {
         ecmaFeatures: { jsx: true },
       },
@@ -92,7 +90,6 @@ module.exports = {
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/member-ordering": "error",
         "@typescript-eslint/type-annotation-spacing": "error",
-        // Breaks interfaces in TypeScript
         "@typescript-eslint/semi": [1, "always"],
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-var-requires": 0,
