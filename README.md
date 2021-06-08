@@ -6,8 +6,7 @@ My strict and opinionated sharable ESLint config with built-in TypeScript and Pr
 
 - **Very** strict code styling (double quotes, no inline comments, semicolons)
 - Proper Prettier format support (disables bad options & lets Prettier do it's job)
-- Proper TypeScript support (disables any breaking options & includes TS overrides)
-  - Require explicit types and visibility modifiers (i.e public, private, protected...)
+- Proper TypeScript support (disables any breaking options & includes TS override
 
 # Installation
 

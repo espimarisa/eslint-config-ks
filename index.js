@@ -73,12 +73,7 @@ module.exports = {
       files: ["*.ts", "*.tsx"],
       parser: "@typescript-eslint/parser",
       plugins: ["@typescript-eslint", "prettier"],
-      extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-      ],
+      extends: ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "prettier"],
 
       parserOptions: {
         ecmaFeatures: { jsx: true },
@@ -101,18 +96,16 @@ module.exports = {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
+        "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
-            "accessibility": "no-public",
-            "overrides": {
-              "accessors": "explicit",
-              "constructors": "explicit",
-              "methods": "explicit",
-              "properties": "explicit"
-            }
-          }
+            accessibility: "no-public",
+            overrides: {
+              accessors: "explicit",
+              methods: "explicit",
+            },
+          },
         ],
         "@typescript-eslint/naming-convention": [
           "warn",
