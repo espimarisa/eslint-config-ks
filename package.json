@@ -1,6 +1,6 @@
 {
   "name": "@sysdotini/eslint-config",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "My strict and opinionated sharable ESLint config with built-in TypeScript and Prettier support.",
   "author": "sysdotini <espi@riseup.net> (https://espi.me)",
   "license": "MIT",
