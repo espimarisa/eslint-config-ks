@@ -7,6 +7,7 @@ My strict and opinionated sharable ESLint config with built-in TypeScript and Pr
 - **Very** strict code styling (double quotes, no inline comments, semicolons)
 - Proper Prettier format support (disables bad options & lets Prettier do it's job)
 - Proper TypeScript support (disables any breaking options & includes TS overrides)
+  - Require explicit types and visibility modifiers (i.e public, private, protected...)
 
 # Installation
 
@@ -15,13 +16,13 @@ My strict and opinionated sharable ESLint config with built-in TypeScript and Pr
 # Or, if you're based, use pnpm : )
 
 # If you only want JS support
-npm i --save-dev eslint prettier typescript eslint-config-prettier eslint-plugin-prettier
+npm i -D eslint prettier typescript eslint-config-prettier eslint-plugin-prettier
 
 # If you want both JS and TS support
-npm i --save-dev eslint prettier typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier
+npm i -D eslint prettier typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier
 
 # Main config
-npm i --save-dev @sysdotini/eslint-config
+npm i -D @sysdotini/eslint-config
 ```
 
 # Usage

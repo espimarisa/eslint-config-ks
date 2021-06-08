@@ -85,7 +85,12 @@ module.exports = {
       },
 
       rules: {
+        // Breaks interfaces
         "semi": "off",
+
+        // Handled by TypeScript
+        "no-undef": "off",
+
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/member-ordering": "error",
@@ -96,6 +101,19 @@ module.exports = {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "no-public",
+            "overrides": {
+              "accessors": "explicit",
+              "constructors": "explicit",
+              "methods": "explicit",
+              "properties": "explicit"
+            }
+          }
+        ],
         "@typescript-eslint/naming-convention": [
           "warn",
           { selector: "default", format: ["camelCase"] },
