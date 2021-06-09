@@ -96,7 +96,7 @@ module.exports = {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
+        // "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
