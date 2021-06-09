@@ -1,102 +1,172 @@
+/**
+ * @file @sysdotini/eslint-config
+ * @description My strict and opinionated ESLint config with built-in TypeScript, Prettier, and import styling support.
+ * @author sysdotini <espi@riseup.net>
+ * @license MIT
+ */
+
+/**
+ * The main config
+ * @type {Record<string, any>}
+ */
+
 module.exports = {
+  root: true,
+
+  /**
+   * Environment options
+   * @type {Record<string, boolean>}
+   */
+
   env: {
     es6: true,
     amd: true,
     browser: true,
   },
 
-  root: true,
+  /**
+   * ESLint parser options
+   * @type {Record<string, any>}
+   */
 
   parserOptions: {
     sourceType: "module",
     ecmaVersion: 2020,
+    ecmaFeatures: { jsx: true },
   },
 
-  extends: ["eslint:recommended", "prettier"],
+  /**
+   * Plugins/estensions
+   * @type {Array<string>}
+   */
+
+  extends: ["eslint:recommended", "plugin:import/recommended", "plugin:import/react", "prettier"],
+
+  /**
+   * Main stylistic rules
+   * @type {Record<string, any>}
+   */
 
   rules: {
-    "arrow-parens": [1, "always"],
-    "block-spacing": [1, "always"],
-    "brace-style": [1, "1tbs", { allowSingleLine: true }],
-    "comma-dangle": [1, "always-multiline"],
-    "comma-spacing": [1, { before: false, after: true }],
-    "comma-style": [1, "last"],
-    "computed-property-spacing": [1, "never"],
-    "consistent-this": [1, "self"],
-    "eol-last": 1,
-    "eqeqeq": [1, "smart"],
-    "no-inline-comments": 1,
-    "jsx-quotes": [1, "prefer-double"],
-    "lines-around-comment": [1, { beforeBlockComment: false }],
-    "max-depth": [1, 8],
-    "max-nested-callbacks": [1, 8],
-    "new-parens": 1,
-    "no-array-constructor": 1,
-    "no-lonely-if": 1,
-    "no-mixed-spaces-and-tabs": 1,
-    "no-multiple-empty-lines": 1,
-    "no-new-object": 1,
-    "no-spaced-func": 1,
-    "no-trailing-spaces": 1,
-    "no-return-await": 1,
-    "no-undef": 0,
-    "no-unneeded-ternary": 1,
-    "no-var": 1,
-    "object-curly-spacing": [1, "always"],
-    "operator-linebreak": [1, "after"],
-    "padded-blocks": [1, "never"],
+    /**
+     * These rules are all disabled due to Prettier handling it
+     * @see https://github.com/prettier/eslint-config-prettier/blob/main/index.js
+     */
+
+    // Prettier handles these rules. Commented in case a rollback is needed
+    /* "arrow-parens": ["warn", "always"],
+    "block-spacing": ["warn", "always"],
+    "brace-style": ["warn", "1tbs", { allowSingleLine: true }],
+    "comma-dangle": ["warn", "always-multiline"],
+    "comma-spacing": ["warn", { after: true, before: false }],
+    "comma-style": ["warn", "last"],
+    "computed-property-spacing": ["warn", "never"],
+    "eol-last": "warn",
+    "jsx-quotes": ["warn", "prefer-double"],
+    "lines-around-comment": ["warn", { beforeBlockComment: false }],
+    "new-parens": "warn",
+    "no-mixed-spaces-and-tabs": "warn",
+    "no-multiple-empty-lines": "warn",
+    "no-spaced-func": "warn",
+    "object-curly-spacing": ["warn", "always"],
+    "no-trailing-spaces": "warn",
+    "operator-linebreak": ["warn", "after"],
+    "quote-props": ["warn", "consistent-as-needed"],
+    "semi": ["warn", "always"],
+    "semi-spacing": ["warn", { after: true, before: false }],
+    "space-before-blocks": ["warn", "always"],
+    "space-in-parens": ["warn", "never"],
+    "space-infix-ops": ["warn", { int32Hint: true }], */
+
+    "consistent-this": ["warn", "self"],
+    "eqeqeq": ["warn", "smart"],
+    "max-depth": ["warn", 8],
+    "max-nested-callbacks": ["warn", 8],
+    "no-array-constructor": "warn",
+    "no-inline-comments": "warn",
+    "no-lonely-if": "warn",
+    "no-new-object": "warn",
+    "no-return-await": "warn",
+    "no-undef": "off",
+    "no-unneeded-ternary": "warn",
+    "no-var": "warn",
+    "padded-blocks": ["warn", "never"],
     "prefer-const": ["error", { destructuring: "any", ignoreReadBeforeAssign: false }],
-    "prettier/prettier": 1,
-    "quotes": [1, "double", { avoidEscape: true, allowTemplateLiterals: false }],
-    "quote-props": [1, "consistent-as-needed"],
-    "semi": [1, "always"],
-    "semi-spacing": [1, { before: false, after: true }],
-    "space-before-blocks": [1, "always"],
-    "space-in-parens": [1, "never"],
-    "space-infix-ops": [1, { int32Hint: true }],
-    "spaced-comment": [1, "always"],
-    "sort-imports": [
-      "warn",
-      {
-        ignoreCase: false,
-        ignoreDeclarationSort: true,
-        ignoreMemberSort: false,
-        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
-        allowSeparatedGroups: false,
-      },
-    ],
+    "quotes": ["warn", "double", { avoidEscape: true, allowTemplateLiterals: false }],
+    "spaced-comment": ["warn", "always"],
+
+    // Plugin options
+    "import/no-default-export": ["error"],
+    "import/order": ["warn", { groups: ["type", "parent", "sibling", "internal", "external", "builtin", "index", "object"] }],
+    "prettier/prettier": "warn",
   },
 
-  // Typescript overrides
+  /**
+   * Typescript overrides
+   * @type {Record<string, any>[]}
+   */
+
   overrides: [
     {
+      /**
+       * Filetypes to check
+       * @type {string[]}
+       */
+
       files: ["*.ts", "*.tsx"],
+
+      /**
+       * The parser to use
+       * @type {string}
+       */
+
       parser: "@typescript-eslint/parser",
-      plugins: ["@typescript-eslint", "prettier"],
-      extends: ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+
+      /**
+       * Parser options
+       * @type {Record<string, any>}
+       */
 
       parserOptions: {
-        ecmaFeatures: { jsx: true },
+        project: "./tsconfig.json",
       },
 
+      /**
+       * Plugins to use
+       * @type {string[]}
+       */
+
+      plugins: ["@typescript-eslint", "prettier"],
+
+      /**
+       * Extensions to use
+       * @type {string[]}
+       */
+
+      extends: [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        "plugin:import/react",
+        "plugin:import/typescript",
+        "prettier",
+      ],
+
+      /**
+       * Main TypeScript ESLint overrides
+       * @type {Record<string, any>}
+       */
+
       rules: {
-        // Breaks interfaces
+        // Prettier handles these rules. Commented in case of a rollback needed
+        // "@typescript-eslint/semi": ["warn", "always"],
+
+        "no-undef": "off",
         "semi": "off",
 
-        // Handled by TypeScript
-        "no-undef": "off",
-
-        "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/member-delimiter-style": "error",
-        "@typescript-eslint/member-ordering": "error",
-        "@typescript-eslint/type-annotation-spacing": "error",
-        "@typescript-eslint/semi": [1, "always"],
-        "@typescript-eslint/no-explicit-any": 0,
-        "@typescript-eslint/no-var-requires": 0,
-        "@typescript-eslint/explicit-module-boundary-types": "off",
+        // Plugin options
         "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/no-empty-function": "off",
-        // "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
@@ -107,27 +177,30 @@ module.exports = {
             },
           },
         ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/member-delimiter-style": "error",
+        "@typescript-eslint/member-ordering": "error",
         "@typescript-eslint/naming-convention": [
           "warn",
-          { selector: "default", format: ["camelCase"] },
-          { selector: "variableLike", format: ["camelCase"] },
-          { selector: "variable", format: ["camelCase", "UPPER_CASE", "PascalCase"] },
-          { selector: "parameter", format: ["camelCase"], leadingUnderscore: "allow" },
-          { selector: "memberLike", format: ["camelCase"] },
-          {
-            selector: "memberLike",
-            modifiers: ["private"],
-            format: ["camelCase"],
-            leadingUnderscore: "require",
-          },
-          { selector: "typeLike", format: null },
-          { selector: "typeAlias", format: null },
-          { selector: "typeProperty", format: null },
-          { selector: "typeParameter", format: ["PascalCase"], prefix: ["T"] },
-          { selector: "interface", format: ["PascalCase"], custom: { regex: "^I[A-Z]", match: false } },
-          { selector: "objectLiteralProperty", format: null },
-          { selector: "enumMember", format: ["UPPER_CASE"] },
+          { format: ["camelCase"], selector: "default" },
+          { format: ["camelCase"], selector: "variableLike" },
+          { format: ["camelCase", "UPPER_CASE", "PascalCase"], selector: "variable" },
+          { format: ["camelCase"], leadingUnderscore: "allow", selector: "parameter" },
+          { format: ["camelCase"], selector: "memberLike" },
+          { format: ["camelCase"], leadingUnderscore: "require", modifiers: ["private"], selector: "memberLike" },
+          { format: null, selector: "typeLike" },
+          { format: null, selector: "typeAlias" },
+          { format: null, selector: "typeProperty" },
+          { format: ["PascalCase"], prefix: ["T"], selector: "typeParameter" },
+          { custom: { match: false, regex: "^I[A-Z]" }, format: ["PascalCase"], selector: "interface" },
+          { format: null, selector: "objectLiteralProperty" },
+          { format: ["UPPER_CASE"], selector: "enumMember" },
         ],
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/type-annotation-spacing": "error",
       },
     },
   ],

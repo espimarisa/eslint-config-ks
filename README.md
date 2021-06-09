@@ -7,28 +7,54 @@ My strict and opinionated sharable ESLint config with built-in TypeScript and Pr
 - **Very** strict code styling (double quotes, no inline comments, semicolons)
 - Proper Prettier format support (disables bad options & lets Prettier do it's job)
 - Proper TypeScript support (disables any breaking options & includes TS override
+- A sane default import/export order specification
 
 # Installation
 
+## Replace pnpm with your package manager of choice if you don't use pnpm.
+
+- If you're using an ancient version of npm, ~~update~~, use `npm i` instead.
+
 ```sh
-# Replace npm with yarn and i with add
-# Or, if you're based, use pnpm : )
+# To only enable JS support & checking
+pnpm add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import
 
-# If you only want JS support
-npm i -D eslint prettier typescript eslint-config-prettier eslint-plugin-prettier
+# Enables TypeScript support & checking
+pnpm add -D typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier eslint-plugin-import
 
-# If you want both JS and TS support
-npm i -D eslint prettier typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier
-
-# Main config
-npm i -D @sysdotini/eslint-config
+# Adds the main config
+pnpm add -D @sysdotini/eslint-config
 ```
 
 # Usage
 
 Once all of the modules are installed, you can add my config to your eslint config file. Additionally, you can expand upon it as you would any other config.
 
-## package.json
+## `.eslintrc/eslintrc.json`
+
+Create an .eslintrc file and put the following into it. The file extension is optional.
+
+```JSON
+{
+  "extends": "@sysdotini/eslint-config",
+  // Your custom rules
+  "rules": {}
+}
+```
+
+## `.eslintrc.js`
+
+Create an .eslintrc.js file and put the following into it.
+
+```JS
+module.exports = {
+  extends: "@sysdotini/eslint-config",
+  // Your custom rules
+  rules: {},
+};
+```
+
+## `package.json`
 
 Append these keys to your existing package.json. Remove the comments.
 
@@ -40,44 +66,33 @@ Append these keys to your existing package.json. Remove the comments.
 },
 
 // Ignore patterns following eslintIgnore spec
-// You can omit this and use .eslintignore if you really want to.
+// You can omit this and use .eslintignore if you want
 "eslintIgnore": ["dist", "node_modules"]
 ```
 
-## .eslintrc/eslintrc.json
+## Project Parser Option
 
-Make a .eslintrc and put this in it. The .json is optional.
+If you are extending the config and a rule requires "project" to be set and you aren't using a tsconfig file at the root of the project, you will need to override parserOptions.project.
 
 ```JSON
 {
   "extends": "@sysdotini/eslint-config",
-  // Your custom rules
-  "rules": {}
+  "parserOptions": {
+    "project": "./path/to/tsconfig.file.json"
+  }
 }
-```
-
-## .eslintrc.js
-
-Make a .eslintrc.js file and put this in it.
-
-```JS
-module.exports = {
-  extends: "@sysdotini/eslint-config",
-  // Your custom rules
-  rules: {},
-};
 ```
 
 # Ignoring
 
 As ESLint doesn't use items in ignoredPatterns for sharable configs, you'll have to set this up yourself (if you are using .eslintrc or .eslintrc.js - for package.json, see above.)
 
-## .eslintignore
+## `.eslintignore`
 
 ```sh
 # https://eslint.org/docs/user-guide/configuring/ignoring-code
-node_modules # This *should* always be ignored but it's good to be sure
-dist # TypeScript output
+node_modules # This should always be ignored by default
+dist # TypeScript default output directory
 # anything else you want to ignore
 ```
 

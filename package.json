@@ -1,7 +1,7 @@
 {
   "name": "@sysdotini/eslint-config",
-  "version": "1.1.2",
-  "description": "My strict and opinionated sharable ESLint config with built-in TypeScript and Prettier support.",
+  "version": "2.0.0",
+  "description": "My strict and opinionated ESLint config with built-in TypeScript, Prettier, and import styling support.",
   "author": "sysdotini <espi@riseup.net> (https://espi.me)",
   "license": "MIT",
   "homepage": "https://github.com/sysdotini/eslint-config",
@@ -31,6 +31,7 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0"
   },
