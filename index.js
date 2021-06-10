@@ -97,7 +97,16 @@ module.exports = {
 
     // Plugin options
     "import/no-default-export": ["error"],
-    "import/order": ["warn", { groups: ["type", "parent", "sibling", "internal", "external", "builtin", "index", "object"] }],
+    "import/order": [
+      "warn",
+      {
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        groups: ["type", "parent", "sibling", "internal", "external", "builtin", "index", "object"],
+      },
+    ],
     "prettier/prettier": "warn",
   },
 
