@@ -78,6 +78,7 @@ module.exports = {
     "space-in-parens": ["warn", "never"],
     "space-infix-ops": ["warn", { int32Hint: true }], */
 
+    "@typescript-eslint/member-ordering": "off",
     "consistent-this": ["warn", "self"],
     "eqeqeq": ["warn", "smart"],
     "max-depth": ["warn", 8],
