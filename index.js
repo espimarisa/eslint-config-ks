@@ -32,72 +32,91 @@ module.exports = {
   parserOptions: {
     sourceType: "module",
     ecmaVersion: 2020,
-    ecmaFeatures: { jsx: true },
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
 
   /**
-   * Plugins/estensions
+   * Plugins to enable
+   * @type {Array<string>}
+   */
+
+  plugins: ["unicorn", "import", "prettier"],
+
+  /**
+   * Rules to extend
    * @type {Array<string>}
    */
 
   extends: ["eslint:recommended", "plugin:import/recommended", "plugin:import/react", "prettier"],
 
   /**
-   * Main stylistic rules
+   * Base rules
    * @type {Record<string, any>}
    */
 
   rules: {
-    /**
-     * These rules are all disabled due to Prettier handling it
-     * @see https://github.com/prettier/eslint-config-prettier/blob/main/index.js
-     */
-
-    // Prettier handles these rules. Commented in case a rollback is needed
-    /* "arrow-parens": ["warn", "always"],
-    "block-spacing": ["warn", "always"],
-    "brace-style": ["warn", "1tbs", { allowSingleLine: true }],
-    "comma-dangle": ["warn", "always-multiline"],
-    "comma-spacing": ["warn", { after: true, before: false }],
-    "comma-style": ["warn", "last"],
-    "computed-property-spacing": ["warn", "never"],
-    "eol-last": "warn",
-    "jsx-quotes": ["warn", "prefer-double"],
-    "lines-around-comment": ["warn", { beforeBlockComment: false }],
-    "new-parens": "warn",
-    "no-mixed-spaces-and-tabs": "warn",
-    "no-multiple-empty-lines": "warn",
-    "no-spaced-func": "warn",
-    "object-curly-spacing": ["warn", "always"],
-    "no-trailing-spaces": "warn",
-    "operator-linebreak": ["warn", "after"],
-    "quote-props": ["warn", "consistent-as-needed"],
-    "semi": ["warn", "always"],
-    "semi-spacing": ["warn", { after: true, before: false }],
-    "space-before-blocks": ["warn", "always"],
-    "space-in-parens": ["warn", "never"],
-    "space-infix-ops": ["warn", { int32Hint: true }], */
-
-    "@typescript-eslint/member-ordering": "off",
     "consistent-this": ["warn", "self"],
+
+    // === is always right
     "eqeqeq": ["warn", "smart"],
+
+    // Let's not go insane
     "max-depth": ["warn", 8],
     "max-nested-callbacks": ["warn", 8],
     "no-array-constructor": "warn",
+
+    // Cleans up comments
     "no-inline-comments": "warn",
-    "no-lonely-if": "warn",
-    "no-new-object": "warn",
-    "no-return-await": "warn",
-    "no-undef": "off",
-    "no-unneeded-ternary": "warn",
-    "no-var": "warn",
-    "padded-blocks": ["warn", "never"],
-    "prefer-const": ["error", { destructuring: "any", ignoreReadBeforeAssign: false }],
-    "quotes": ["warn", "double", { avoidEscape: true, allowTemplateLiterals: false }],
     "spaced-comment": ["warn", "always"],
 
-    // Plugin options
-    "import/no-default-export": ["error"],
+    // Lonely stuff is bad
+    "no-lonely-if": "warn",
+    "no-new-object": "warn",
+
+    // Returns are already promises
+    "no-return-await": "warn",
+
+    // Doesn't work correctly
+    "no-undef": "off",
+
+    // Prevents stupid ternary use
+    "no-unneeded-ternary": "warn",
+
+    // Stop using fucking var, please
+    "no-var": "error",
+
+    // Don't pad blocks out
+    "padded-blocks": ["warn", "never"],
+
+    // Const should *always* be used for constant stuff
+    "prefer-const": ["error", { destructuring: "any", ignoreReadBeforeAssign: false }],
+
+    // Single quote users are weird
+    "quotes": ["warn", "double", { avoidEscape: true, allowTemplateLiterals: false }],
+
+    // Enable prettier warnings
+    "prettier/prettier": "warn",
+
+    // We're not publishing a package, so we don't need this
+    "node/no-unpublished-import": ["off"],
+
+    // Very finicky, can't seem to get it to function correctly
+    "node/no-unsupported-features/es-syntax": ["off", { ignores: ["modules"] }],
+
+    // Causes breakage with node:imports and .js in TS files
+    "node/no-missing-import": ["off"],
+    "import/no-unresolved": ["off"],
+
+    // This setting is inconsistent
+    "unicorn/filename-case": ["off"],
+
+    // This is useless
+    "unicorn/no-array-for-each": ["off"],
+    "unicorn/consistent-function-scoping": ["off"],
+
+    // Enables import order sorting
     "import/order": [
       "warn",
       {
@@ -108,7 +127,6 @@ module.exports = {
         groups: ["type", "parent", "sibling", "internal", "external", "builtin", "index", "object"],
       },
     ],
-    "prettier/prettier": "warn",
   },
 
   /**
@@ -133,7 +151,26 @@ module.exports = {
       parser: "@typescript-eslint/parser",
 
       /**
+       * TypeScript specific settings
+       * @type {Record<string,any[]}
+       */
+
+      settings: {
+        "import/parsers": {
+          "@typescript-eslint/parser": [".ts", ".tsx"],
+        },
+
+        // Enables TypeScript import resolving
+        "import/resolver": {
+          typescript: {
+            project: "./tsconfig.json",
+          },
+        },
+      },
+
+      /**
        * Parser options
+       * NOTE: You may need to override this in your local .eslintrc!
        * @type {Record<string, any>}
        */
 
@@ -157,6 +194,8 @@ module.exports = {
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:node/recommended",
+        "plugin:unicorn/recommended",
         "plugin:import/recommended",
         "plugin:import/react",
         "plugin:import/typescript",
@@ -169,14 +208,26 @@ module.exports = {
        */
 
       rules: {
-        // Prettier handles these rules. Commented in case of a rollback needed
-        // "@typescript-eslint/semi": ["warn", "always"],
-
         "no-undef": "off",
         "semi": "off",
 
-        // Plugin options
-        "@typescript-eslint/ban-ts-comment": "off",
+        // This is pretty useless, IMHO
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/member-delimiter-style": "error",
+
+        // Force strict member ordering
+        "@typescript-eslint/member-ordering": "error",
+
+        // Breaks some typings
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+
+        // We don't make TS error on this, so enable it
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/type-annotation-spacing": "error",
+
+        // Semi-explicit member accessibility
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
@@ -187,30 +238,68 @@ module.exports = {
             },
           },
         ],
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/member-delimiter-style": "error",
-        "@typescript-eslint/member-ordering": "error",
+
+        // Naming convention
         "@typescript-eslint/naming-convention": [
           "warn",
-          { format: ["camelCase"], selector: "default" },
-          { format: ["camelCase"], selector: "variableLike" },
-          { format: ["camelCase", "UPPER_CASE", "PascalCase"], selector: "variable" },
-          { format: ["camelCase"], leadingUnderscore: "allow", selector: "parameter" },
-          { format: ["camelCase"], selector: "memberLike" },
-          { format: ["camelCase"], leadingUnderscore: "require", modifiers: ["private"], selector: "memberLike" },
-          { format: null, selector: "typeLike" },
-          { format: null, selector: "typeAlias" },
-          { format: null, selector: "typeProperty" },
-          { format: ["PascalCase"], prefix: ["T"], selector: "typeParameter" },
-          { custom: { match: false, regex: "^I[A-Z]" }, format: ["PascalCase"], selector: "interface" },
-          { format: null, selector: "objectLiteralProperty" },
-          { format: ["UPPER_CASE"], selector: "enumMember" },
+          {
+            selector: "default",
+            format: ["camelCase"],
+          },
+          {
+            selector: "variableLike",
+            format: ["camelCase"],
+          },
+          {
+            selector: "variable",
+            format: ["camelCase", "UPPER_CASE", "PascalCase"],
+          },
+          {
+            selector: "parameter",
+            format: ["camelCase"],
+            leadingUnderscore: "allow",
+          },
+          {
+            selector: "memberLike",
+            format: ["camelCase"],
+          },
+          {
+            selector: "memberLike",
+            modifiers: ["private"],
+            format: ["camelCase"],
+            leadingUnderscore: "require",
+          },
+          {
+            selector: "typeParameter",
+            format: ["PascalCase"],
+            prefix: ["T"],
+          },
+          {
+            selector: "interface",
+            format: ["PascalCase"],
+            custom: { regex: "^I[A-Z]", match: false },
+          },
+          {
+            selector: "enumMember",
+            format: ["UPPER_CASE"],
+          },
+          {
+            selector: "objectLiteralProperty",
+            format: null,
+          },
+          {
+            selector: "typeLike",
+            format: null,
+          },
+          {
+            selector: "typeAlias",
+            format: null,
+          },
+          {
+            selector: "typeProperty",
+            format: null,
+          },
         ],
-        "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/type-annotation-spacing": "error",
       },
     },
   ],

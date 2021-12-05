@@ -96,6 +96,7 @@ TODO              text
 *.tpl             text
 *.twig            text
 *.vue             text
+*.svelte          text
 
 # Configs
 *.cnf             text
