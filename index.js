@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-null */
 /**
  * @file @sysdotini/eslint-config
  * @description My strict and opinionated ESLint config with built-in TypeScript, Prettier, and import styling support.
@@ -49,7 +50,16 @@ module.exports = {
    * @type {Array<string>}
    */
 
-  extends: ["eslint:recommended", "plugin:import/recommended", "plugin:import/react", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/react",
+    "plugin:node/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:import/recommended",
+    "plugin:import/react",
+    "prettier",
+  ],
 
   /**
    * Base rules
@@ -111,6 +121,7 @@ module.exports = {
 
     // This setting is inconsistent
     "unicorn/filename-case": ["off"],
+    "unicorn/prefer-module": "off",
 
     // This is useless
     "unicorn/no-array-for-each": ["off"],
@@ -190,17 +201,7 @@ module.exports = {
        * @type {string[]}
        */
 
-      extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:node/recommended",
-        "plugin:unicorn/recommended",
-        "plugin:import/recommended",
-        "plugin:import/react",
-        "plugin:import/typescript",
-        "prettier",
-      ],
+      extends: ["plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
 
       /**
        * Main TypeScript ESLint overrides
