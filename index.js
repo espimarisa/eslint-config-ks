@@ -103,7 +103,7 @@ module.exports = {
     "node/no-unpublished-import": ["off"],
 
     // Very finicky, can't seem to get it to function correctly
-    "node/no-unsupported-features/es-syntax": ["off", { ignores: ["modules"] }],
+    "node/no-unsupported-features": ["off", { ignores: ["modules"] }],
 
     // Causes breakage with node:imports and .js in TS files
     "node/no-missing-import": ["off"],
