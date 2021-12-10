@@ -122,6 +122,7 @@ module.exports = {
     // This setting is inconsistent
     "unicorn/filename-case": ["off"],
     "unicorn/prefer-module": "off",
+    "unicorn/prevent-abbreviations": "off",
 
     // This is useless
     "unicorn/no-array-for-each": ["off"],
