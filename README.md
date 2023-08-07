@@ -14,7 +14,7 @@ My opinionated ESLint config to perform strict type-checking and to enforce best
 
 ```sh
 # To only enable JS support & checking
-pnpm add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import eslint-plugin-unicorn eslint-plugin-n
+pnpm add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import eslint-plugin-unicorn eslint-plugin-n eslint-plugin-promise eslint-plugin-security
 
 # If you're a TypeScript user, also add these
 pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-import-resolver-typescript
@@ -24,7 +24,6 @@ pnpm add -D @espimarisa/eslint-config
 ```
 
 ## Setup
-
 
 ```JS
 // .eslintrc.cjs

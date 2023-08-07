@@ -17,10 +17,12 @@ module.exports = {
     },
   },
 
-  plugins: ["unicorn", "import", "prettier"],
+  plugins: ["promise", "unicorn", "import", "prettier"],
 
   extends: [
     "eslint:recommended",
+    "plugin:promise/recommended",
+    "plugin:security/recommended",
     "plugin:import/recommended",
     "plugin:import/react",
     "plugin:n/recommended",
@@ -58,11 +60,14 @@ module.exports = {
 
     // Causes breakage with paths
     "n/no-missing-import": ["off"],
+    "n/no-unpublished-import": ["off"],
+    "import/no-unresolved": ["off"],
 
     // This setting is inconsistent
     "unicorn/filename-case": ["off"],
     "unicorn/prevent-abbreviations": "off",
     "unicorn/prefer-module": "off",
+    "security/detect-non-literal-fs-filename": "off",
 
     // Import order
     "import/order": [
@@ -106,14 +111,6 @@ module.exports = {
         "plugin:import/typescript",
       ],
       rules: {
-        // Allow Type imports
-        "n/no-unpublished-import": [
-          "error",
-          {
-            ignoreTypeImport: true,
-          },
-        ],
-
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
