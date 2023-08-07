@@ -1,23 +1,7 @@
 /* eslint-disable unicorn/no-null */
-/**
- * @file @sysdotini/eslint-config
- * @description My strict and opinionated ESLint config with built-in TypeScript, Prettier, and import styling support.
- * @author sysdotini <espi@riseup.net>
- * @license MIT
- */
-
-/**
- * The main config
- * @type {Record<string, any>}
- */
 
 module.exports = {
   root: true,
-
-  /**
-   * Environment options
-   * @type {Record<string, boolean>}
-   */
 
   env: {
     es6: true,
@@ -25,110 +9,62 @@ module.exports = {
     browser: true,
   },
 
-  /**
-   * ESLint parser options
-   * @type {Record<string, any>}
-   */
-
   parserOptions: {
     sourceType: "module",
-    ecmaVersion: 2020,
+    ecmaVersion: 2022,
     ecmaFeatures: {
       jsx: true,
     },
   },
 
-  /**
-   * Plugins to enable
-   * @type {Array<string>}
-   */
-
   plugins: ["unicorn", "import", "prettier"],
-
-  /**
-   * Rules to extend
-   * @type {Array<string>}
-   */
 
   extends: [
     "eslint:recommended",
     "plugin:import/recommended",
     "plugin:import/react",
-    "plugin:node/recommended",
+    "plugin:n/recommended",
     "plugin:unicorn/recommended",
     "plugin:import/recommended",
     "plugin:import/react",
     "prettier",
   ],
 
-  /**
-   * Base rules
-   * @type {Record<string, any>}
-   */
-
   rules: {
+    // Force best practices
     "consistent-this": ["warn", "self"],
-
-    // === is always right
     "eqeqeq": ["warn", "smart"],
+    "no-lonely-if": "warn",
+    "no-unneeded-ternary": "warn",
+    "no-var": "error",
 
-    // Let's not go insane
+    // QOL stuff
     "max-depth": ["warn", 8],
     "max-nested-callbacks": ["warn", 8],
+
+    // Never use Array or Object
+    "no-new-object": "warn",
     "no-array-constructor": "warn",
 
     // Cleans up comments
     "no-inline-comments": "warn",
     "spaced-comment": ["warn", "always"],
 
-    // Lonely stuff is bad
-    "no-lonely-if": "warn",
-    "no-new-object": "warn",
-
-    // Returns are already promises
-    "no-return-await": "warn",
-
-    // Doesn't work correctly
-    "no-undef": "off",
-
-    // Prevents stupid ternary use
-    "no-unneeded-ternary": "warn",
-
-    // Stop using fucking var, please
-    "no-var": "error",
-
-    // Don't pad blocks out
-    "padded-blocks": ["warn", "never"],
-
-    // Const should *always* be used for constant stuff
+    // Force the use of const when not redefined
     "prefer-const": ["error", { destructuring: "any", ignoreReadBeforeAssign: false }],
 
-    // Single quote users are weird
-    "quotes": ["warn", "double", { avoidEscape: true, allowTemplateLiterals: false }],
-
-    // Enable prettier warnings
+    // Enables prettier
     "prettier/prettier": "warn",
 
-    // We're not publishing a package, so we don't need this
-    "node/no-unpublished-import": ["off"],
-
-    // Very finicky, can't seem to get it to function correctly
-    "node/no-unsupported-features/es-syntax": ["off"],
-
-    // Causes breakage with node:imports and .js in TS files
-    "node/no-missing-import": ["off"],
-    "import/no-unresolved": ["off"],
+    // Causes breakage with paths
+    "n/no-missing-import": ["off"],
 
     // This setting is inconsistent
     "unicorn/filename-case": ["off"],
-    "unicorn/prefer-module": "off",
     "unicorn/prevent-abbreviations": "off",
+    "unicorn/prefer-module": "off",
 
-    // This is useless
-    "unicorn/no-array-for-each": ["off"],
-    "unicorn/consistent-function-scoping": ["off"],
-
-    // Enables import order sorting
+    // Import order
     "import/order": [
       "warn",
       {
@@ -136,100 +72,49 @@ module.exports = {
           order: "asc",
           caseInsensitive: true,
         },
-        groups: ["type", "parent", "sibling", "internal", "external", "builtin", "index", "object"],
+        groups: ["type", "internal", "parent", "sibling", "external", "builtin", "index", "object"],
       },
     ],
   },
 
-  /**
-   * Typescript overrides
-   * @type {Record<string, any>[]}
-   */
-
+  // TypeScript support
   overrides: [
     {
-      /**
-       * Filetypes to check
-       * @type {string[]}
-       */
+      parserOptions: {
+        project: ["tsconfig.json"],
+        sourceType: "module",
+      },
 
       files: ["*.ts", "*.tsx"],
-
-      /**
-       * The parser to use
-       * @type {string}
-       */
-
       parser: "@typescript-eslint/parser",
-
-      /**
-       * TypeScript specific settings
-       * @type {Record<string,any[]}
-       */
 
       settings: {
         "import/parsers": {
           "@typescript-eslint/parser": [".ts", ".tsx"],
         },
 
-        // Enables TypeScript import resolving
         "import/resolver": {
-          typescript: {
-            project: "./tsconfig.json",
-          },
+          typescript: { alwaysTryTypes: true },
         },
       },
 
-      /**
-       * Parser options
-       * NOTE: You may need to override this in your local .eslintrc!
-       * @type {Record<string, any>}
-       */
-
-      parserOptions: {
-        project: "./tsconfig.json",
-      },
-
-      /**
-       * Plugins to use
-       * @type {string[]}
-       */
-
-      plugins: ["@typescript-eslint", "prettier"],
-
-      /**
-       * Extensions to use
-       * @type {string[]}
-       */
-
-      extends: ["plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
-
-      /**
-       * Main TypeScript ESLint overrides
-       * @type {Record<string, any>}
-       */
-
+      plugins: ["@typescript-eslint"],
+      extends: [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:import/typescript",
+      ],
       rules: {
-        "no-undef": "off",
-        "semi": "off",
+        // Allow Type imports
+        "n/no-unpublished-import": [
+          "error",
+          {
+            ignoreTypeImport: true,
+          },
+        ],
 
-        // This is pretty useless, IMHO
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/member-delimiter-style": "error",
-
-        // Force strict member ordering
-        "@typescript-eslint/member-ordering": "error",
-
-        // Breaks some typings
-        "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-
-        // We don't make TS error on this, so enable it
         "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/type-annotation-spacing": "error",
-
-        // Semi-explicit member accessibility
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {

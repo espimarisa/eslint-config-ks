@@ -1,91 +1,60 @@
-# @sysdotini/eslint-config
+# @espimarisa/eslint-config
 
-My strict and opinionated sharable ESLint config with built-in TypeScript and Prettier support.
+My opinionated ESLint config to perform strict type-checking and to enforce best practices in both ESM and TypeScript.
+
+> This is a very strict config that I primarily use for my own projects. If you are not advanced with TypeScript especially, you will likely want to configure a lot of your own rules or look elsewhere. YMMV!
 
 ## Highlights
 
-- **Very** strict code styling (double quotes, no inline comments, semicolons)
-- Proper Prettier format support (disables bad options & lets Prettier do it's job)
-- Proper TypeScript support (disables any breaking options & includes TS override
-- A sane default import/export order specification
+- Opinionated default import order
+- Native prettier support configurable by your .prettierrc
+- Native TypeScript support with the strictest type-checking rules enabled
 
 ## Installation
 
-## Replace pnpm with your package manager of choice if you don't use pnpm
-
-- If you're using an ancient version of npm, ~~update~~, use `npm i` instead.
-
 ```sh
 # To only enable JS support & checking
-pnpm add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import eslint-plugin-unicorn eslint-plugin-node
+pnpm add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import eslint-plugin-unicorn eslint-plugin-n
 
 # If you're a TypeScript user, also add these
-pnpm add -D typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-import-resolver-typescript
+pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-import-resolver-typescript
 
 # Install the main config last
-pnpm add -D @sysdotini/eslint-config
+pnpm add -D @espimarisa/eslint-config
 ```
 
-## Usage
+## Setup
 
-Once all of the modules are installed, you can add my config to your eslint config file. Additionally, you can expand upon it as you would any other config.
-
-### `.eslintrc/eslintrc.json`
-
-Create an .eslintrc file and put the following into it. The file extension is optional.
-
-```JSON
-{
-  "extends": "@sysdotini/eslint-config",
-  // Your custom rules
-  "rules": {}
-}
-```
-
-### `.eslintrc.js`
-
-Create an .eslintrc.js file and put the following into it.
 
 ```JS
+// .eslintrc.cjs
 module.exports = {
-  extends: "@sysdotini/eslint-config",
-  // Your custom rules
+  extends: "@espimarisa/eslint-config",
+  // Custom rules
   rules: {},
 };
 ```
 
-### `package.json`
+## TypeScript Monorepos
 
-Append these keys to your existing package.json. Remove the comments.
+If you are using a monorepo or your tsconfig is not at `root/tsconfig.json`, you will need to override parserOptions.project for TypeScript functionality to work properly.
 
-```JSON
-"eslintConfig": {
-  "extends": "@sysdotini/eslint-config",
-  // Your custom rules
-  "rules": {}
-},
-
-// Ignore patterns following eslintIgnore spec
-// You can omit this and use .eslintignore if you want
-"eslintIgnore": ["dist", "node_modules"]
-```
-
-## Project Parser Option
-
-If you are extending the config and a rule requires "project" to be set and you aren't using a tsconfig file at the root of the project, you will need to override parserOptions.project.
-
-```JSON
-{
-  "extends": "@sysdotini/eslint-config",
-  "parserOptions": {
-    "project": "./path/to/tsconfig.file.json"
-  },
-}
+```JS
+module.exports = {
+  extends: "@espimarisa/eslint-config",
+  overrides: [
+    {
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+      },
+    },
+  ],
+};
 ```
 
 ## Ignoring
 
-As ESLint doesn't use items in ignoredPatterns for sharable configs, you'll have to set this up yourself (if you are using .eslintrc or .eslintrc.js - for package.json, see above.)
+As ESLint doesn't use items in ignoredPatterns for sharable configs, you'll have to set this up yourself, and per-package if you're working with a monorepo.
 
 ### `.eslintignore`
 
@@ -100,4 +69,4 @@ dist # TypeScript default output directory
 
 [MIT][license]
 
-[license]: LICENSE "The MIT License"
+[license]: LICENSE "A link to the project license."
