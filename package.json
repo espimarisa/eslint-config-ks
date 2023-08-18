@@ -1,6 +1,6 @@
 {
   "name": "@espimarisa/eslint-config",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "My opinionated ESLint config to perform strict type-checking and to enforce best practices in both ESM and TypeScript.",
   "author": "Espi Marisa <contact@espi.me> (https://espi.me)",
   "license": "MIT",
