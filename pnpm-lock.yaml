@@ -1,8 +1,5 @@
 lockfileVersion: '6.0'
 
-overrides:
-  eslint-plugin-import: npm:eslint-plugin-i
-
 devDependencies:
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.4.1
@@ -20,7 +17,7 @@ devDependencies:
     specifier: ^3.6.0
     version: 3.6.0(@typescript-eslint/parser@6.4.1)(eslint-plugin-i@2.28.0-2)(eslint@8.47.0)
   eslint-plugin-import:
-    specifier: npm:eslint-plugin-i
+    specifier: npm:eslint-plugin-i@2.28.0-2
     version: /eslint-plugin-i@2.28.0-2(@typescript-eslint/parser@6.4.1)(eslint-import-resolver-typescript@3.6.0)(eslint@8.47.0)
   eslint-plugin-n:
     specifier: ^16.0.2
