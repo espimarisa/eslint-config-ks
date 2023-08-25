@@ -1,17 +1,18 @@
 /* eslint-disable unicorn/no-null */
 
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
 
   env: {
-    es6: true,
+    es2023: true,
     amd: true,
     browser: true,
   },
 
   parserOptions: {
     sourceType: "module",
-    ecmaVersion: 2022,
+    ecmaVersion: 2023,
     ecmaFeatures: {
       jsx: true,
     },
@@ -27,8 +28,6 @@ module.exports = {
     "plugin:import/react",
     "plugin:n/recommended",
     "plugin:unicorn/recommended",
-    "plugin:import/recommended",
-    "plugin:import/react",
     "prettier",
   ],
 
