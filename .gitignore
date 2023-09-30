@@ -1,3 +1,17 @@
+# Configs
+config.json
+config.toml
+application.yml
+
+# Binaries
+*.jar
+*.exe
+
+# Database
+*.db
+*.sql
+rethinkdb_data/
+
 # Unused lockfiles
 yarn.lock
 package-lock.json

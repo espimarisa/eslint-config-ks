@@ -28,7 +28,6 @@ pnpm add -D @espimarisa/eslint-config
 ```JS
 // .eslintrc.cjs
 module.exports = {
-  // If you're a TS user, use "@espimarisa/eslint-config/typescript-config"
   extends: "@espimarisa/eslint-config",
   // Custom rules
   rules: {},
@@ -41,7 +40,7 @@ If you are using a monorepo or your tsconfig is not at `root/tsconfig.json`, you
 
 ```JS
 module.exports = {
-  extends: "@espimarisa/eslint-config/typescript-config",
+  extends: "@espimarisa/eslint-config",
   overrides: [
     {
       parserOptions: {
