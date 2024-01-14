@@ -9,6 +9,7 @@
   "bugs": {
     "url": "https://github.com/espimarisa/eslint-config"
   },
+  "packageManager": "pnpm@8.14.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/espimarisa/eslint-config.git"
