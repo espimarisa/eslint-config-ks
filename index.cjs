@@ -23,7 +23,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:promise/recommended",
-    "plugin:security/recommended",
+    "plugin:security/recommended-legacy",
     "plugin:import/recommended",
     "plugin:import/react",
     "plugin:n/recommended",
@@ -110,13 +110,16 @@ module.exports = {
         "plugin:import/typescript",
       ],
       rules: {
-        // This is just too much... sorry <3
+        // Personal preference - too strict for my liking
         "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/no-unsafe-vars": "off",
         "@typescript-eslint/no-unsafe-call": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
 
+        // Pointless to throw a TS error when the linter does this
         "@typescript-eslint/no-unused-vars": "error",
+
+        // Prefer javalike accessibility indicators
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
