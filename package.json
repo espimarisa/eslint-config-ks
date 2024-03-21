@@ -29,6 +29,11 @@
     "quality",
     "style"
   ],
+  "types": "./dist/index.d.mts",
+  "scripts": {
+    "prepublish": "bun run build",
+    "build": "tsc"
+  },
   "dependencies": {
     "@eslint/js": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
