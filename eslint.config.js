@@ -1,13 +1,22 @@
 import eslintConfig from "./src/index.mjs";
 
-export default eslintConfig({
-  prettier: true,
+export default eslintConfig(
+  {
+    prettier: true,
 
-  json: true,
+    json: true,
 
-  yml: true,
+    yml: true,
 
-  markdown: true,
+    markdown: true,
 
-  toml: true,
-});
+    toml: true,
+  },
+  [
+    {
+      rules: {
+        "n/no-missing-import": "off",
+      },
+    },
+  ],
+);
