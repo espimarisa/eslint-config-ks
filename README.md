@@ -103,8 +103,8 @@ export default ks({
 `eslint-plugin-svelte`, `svelte-eslint-parser`, and `svelte` must be installed to enable Svelte support.
 
 ```sh
-bun add -D eslint-plugin-svelte svelte-eslint-parser svelte
-pnpm add -D eslint-plugin-svelte svelte-eslint-parser svelte
+bun add -D eslint-plugin-svelte@2.36.0-next.12 svelte-eslint-parser@v0.34.0-next.12 svelte
+pnpm add -D eslint-plugin-svelte@2.36.0-next.12 svelte-eslint-parser@v0.34.0-next.12 svelte
 ```
 
 ```js
