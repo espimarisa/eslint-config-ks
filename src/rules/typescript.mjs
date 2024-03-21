@@ -1,16 +1,7 @@
 // @ts-check
 
-import tseslint from "typescript-eslint";
-
 /** @type {import("eslint").Linter.RulesRecord} */
 const typescriptRules = {
-  // Enables strict type checking rules
-  ...tseslint.configs.base.rules,
-  ...tseslint.configs.eslintRecommended.rules,
-
-  // @ts-expect-error This type seems to be out of date
-  ...tseslint.configs.strictTypeChecked.rules,
-
   // TypeScript rules that are a bit too annoying for my liking
   "@typescript-eslint/no-unsafe-argument": "off",
   "@typescript-eslint/no-unsafe-assignment": "off",

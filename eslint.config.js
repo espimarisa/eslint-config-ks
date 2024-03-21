@@ -9,9 +9,10 @@ export default eslintConfig(
     yml: true,
 
     markdown: true,
-
+    typescript: true,
     toml: true,
 
+    svelte: true,
     react: false,
   },
   [

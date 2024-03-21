@@ -43,6 +43,3 @@ export const reactConfig = {
     ...reactRules,
   },
 };
-
-/** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
-export const reactTypescriptConfig = {};

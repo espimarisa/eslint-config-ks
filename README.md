@@ -2,15 +2,16 @@
 
 A strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, JSON, React, and more.
 
-eslint-config-ks is a "kitchen sink" ESLint config designed to be easily configurable and deployable regardless of the type of project you are working on. Additional library and language support is WIP.
+eslint-config-ks is a "kitchen sink" ESLint config designed to be easily configurable and deployable regardless of the type of project you are working on.
 
-eslint-config-ks deploys strict but sane rules for ESM, TypeScript, React, JSON, Markdown, TOML, and YAML currently.
+eslint-config-ks deploys strict but sane rules for ESM, TypeScript, React, Svelte, JSON, Markdown, TOML, and YAML currently.
 
 ## Install
 
 ```sh
 # be sure you are installing the latest version of ESLint!
 # pnpm, replace with your package manager of choice
+# if you are using react or svelte, don't miss the below documentation!
 pnpm add -D eslint eslint-config-ks
 
 # bun
@@ -42,14 +43,20 @@ export default ks({
   // An array of paths to ignore. Defaults to ignoring node_modules and dist.
   ignores: ["**/node_modules/*", "**/dist/*"],
 
-  // A path pointing to a tsconfig file for TypeScript support. Defaults to "true" to enable the default parser behavior.
-  project: ["tsconfig.json"],
-
   // Enables Prettier support and ties to the linter. Defaults to false. You need to provide your own .prettierrc.
   prettier: false,
 
+  // Toggles TypeScript support. Defaults to true.
+  typescript: true,
+
+  // A path pointing to a tsconfig file for TypeScript support. Defaults to true to enable default behavior.
+  project: ["tsconfig.json"],
+
   // Enables React support. Requires eslint-plugin-react, eslint-plugin-react-hooks, and eslint-plugin-jsx-a11y to be installed. Defaults to false.
   react: false,
+
+  // Enables Svelte support. Requires eslint-plugin-svelte, svelte-eslint-parser, and svelte to be installed. Defaults to false.
+  svelte: false,
 
   // Enables linting JSON, JSONC, and JSON5 files. Defaults to false.
   json: false,
@@ -67,7 +74,7 @@ export default ks({
 
 ## React Support
 
-`eslint-plugin-react`, `eslint-plugin-react-hooks`, and `eslint-plugin-jsx-a11y` must be installed to enable React support. You will also need "react" and "@types/react" if you are using TSX.
+`eslint-plugin-react`, `eslint-plugin-react-hooks`, and `eslint-plugin-jsx-a11y` must be installed to enable React support. You will also need `react` and `@types/react` if you are using TSX.
 
 ```sh
 bun add -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
@@ -91,11 +98,30 @@ export default ks({
 });
 ```
 
+## Svelte Support
+
+`eslint-plugin-svelte`, `svelte-eslint-parser`, and `svelte` must be installed to enable Svelte support.
+
+```sh
+bun add -D eslint-plugin-svelte svelte-eslint-parser svelte
+pnpm add -D eslint-plugin-svelte svelte-eslint-parser svelte
+```
+
+```js
+// eslint.config.js
+import ks from "eslint-config-ks";
+
+export default ks({
+  svelte: true,
+});
+```
+
 ## Extending
 
 Additionally, you can pass an array of flat ESLint configs if you need to extend the existing config for something that is not supported. These configs are loaded last, and may override existing rules in eslint-config-ks.
 
 ```js
+// eslint.config.js
 import ks from "eslint-config-ks";
 
 export default ks(
@@ -141,7 +167,8 @@ You may need to add the following options to `.vscode/settings.json` or your VSC
     "json",
     "jsonc",
     "yaml",
-    "toml"
+    "toml",
+    "svelte"
   ]
 }
 ```
