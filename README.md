@@ -23,12 +23,21 @@ bun add -D eslint eslint-config-ks
 As of ESLint v8.23.0, ESLint uses a new flat configuration file. This config is only compatible with that standard, so be sure you install the latest version of ESLint.
 
 ```js
-// eslint.config.js at the root of your project
-// if you are not using ESM with "type": "module" in your package.json
-// replace import with require and export default with module.exports = ks();
+// eslint.config.js
 import ks from "eslint-config-ks";
 
 export default ks();
+```
+
+```js
+// eslint.config.js but CommonJS
+// Note that this is made for ESM only and may break in CJS. YMMV
+
+// eslint-disable-next-line unicorn/prefer-module, n/no-missing-require
+const ks = require("eslint-config-ks");
+
+// eslint-disable-next-line unicorn/prefer-module
+module.exports = ks();
 ```
 
 ## Options
