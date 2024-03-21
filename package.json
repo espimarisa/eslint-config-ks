@@ -34,6 +34,9 @@
     "prepublish": "bun run build",
     "build": "tsc"
   },
+  "peerDependencies": {
+    "eslint": "^8.57.0"
+  },
   "dependencies": {
     "@eslint/js": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",

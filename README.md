@@ -2,8 +2,6 @@
 
 A strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, JSON, Markdown, and more.
 
-## About
-
 eslint-config-ks is a "kitchen sink" ESLint config designed to be easily configurable and deployable regardless of the type of project you are working on. Additional library and language support is WIP.
 
 eslint-config-ks deploys strict but sane rules for ESM, TypeScript, JSON, Markdown, TOML, and YAML currently.
@@ -11,6 +9,7 @@ eslint-config-ks deploys strict but sane rules for ESM, TypeScript, JSON, Markdo
 ## Install
 
 ```sh
+# be sure you are installing the latest version of ESLint!
 # pnpm, replace with your package manager of choice
 pnpm add -D eslint eslint-config-ks
 
