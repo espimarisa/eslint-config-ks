@@ -11,6 +11,8 @@ export default eslintConfig(
     markdown: true,
 
     toml: true,
+
+    react: false,
   },
   [
     {

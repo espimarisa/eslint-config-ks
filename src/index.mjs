@@ -7,6 +7,7 @@ import { javascriptConfig } from "./configs/javascript.mjs";
 import { jsonConfig } from "./configs/json.mjs";
 import { markdownConfig } from "./configs/markdown.mjs";
 import { prettierConfig } from "./configs/prettier.mjs";
+import { reactConfig } from "./configs/react.mjs";
 import { tomlConfig } from "./configs/toml.mjs";
 import { typescriptConfig } from "./configs/typescript.mjs";
 import { ymlConfig } from "./configs/yaml.mjs";
@@ -15,7 +16,8 @@ import { ymlConfig } from "./configs/yaml.mjs";
  * @typedef ConfigOptions Configuration options. If no options are provided, only JS/TS support is enabled.
  * @property {string[] | undefined} ignores An array of paths to ignore. Defaults to ignoring node_modules and dist.
  * @property {string[] | boolean | undefined} project A path pointing to a tsconfig or a boolean enabling default behaviour.
- * @property {boolean | undefined} prettier Enables Prettier support and ties it to the linter. Defaults to false.
+ * @property {boolean | undefined} prettier Enables Prettier support and ties it to the linter. Defaults to false. You need to provide your own .prettierrc.
+ * @property {boolean | undefined} react Enables React support. Requires eslint-plugin-react, eslint-plugin-react-hooks, and eslint-plugin-jsx-a11y to be installed. Defaults to false.
  * @property {boolean | undefined} json Enables linting JSON, JSONC, and JSON5 files. Defaults to false.
  * @property {boolean | undefined} markdown Enables linting code snippets inside of Markdown/MD files. Defaults to false.
  * @property {boolean | undefined} toml Enables linting TOML files. Defaults to false.
@@ -43,6 +45,9 @@ export default (options, configs) => {
 
     // TS only options
     { ...typescriptConfig(options?.project) },
+
+    // React options
+    options?.react ? { ...reactConfig } : {},
 
     options?.markdown ? { ...markdownConfig } : {},
     options?.json ? { ...jsonConfig } : {},

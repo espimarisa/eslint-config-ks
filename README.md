@@ -1,10 +1,10 @@
 # [eslint-config-ks][package]
 
-A strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, JSON, Markdown, and more.
+A strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, JSON, React, and more.
 
 eslint-config-ks is a "kitchen sink" ESLint config designed to be easily configurable and deployable regardless of the type of project you are working on. Additional library and language support is WIP.
 
-eslint-config-ks deploys strict but sane rules for ESM, TypeScript, JSON, Markdown, TOML, and YAML currently.
+eslint-config-ks deploys strict but sane rules for ESM, TypeScript, React, JSON, Markdown, TOML, and YAML currently.
 
 ## Install
 
@@ -19,7 +19,7 @@ bun add -D eslint eslint-config-ks
 
 ## Setup
 
-As of ESLint v8.21.0, ESLint uses a new flat configuration file. This config is only compatible with that standard, so be sure you install the latest version of ESLint.
+As of ESLint v8.23.0, ESLint uses a new flat configuration file. This config is only compatible with that standard, so be sure you install the latest version of ESLint.
 
 ```js
 // eslint.config.js at the root of your project
@@ -45,8 +45,11 @@ export default ks({
   // A path pointing to a tsconfig file for TypeScript support. Defaults to "true" to enable the default parser behavior.
   project: ["tsconfig.json"],
 
-  // Enables Prettier support and ties to the linter. Defaults to false. You will need to provide your own .prettierrc.
+  // Enables Prettier support and ties to the linter. Defaults to false. You need to provide your own .prettierrc.
   prettier: false,
+
+  // Enables React support. Requires eslint-plugin-react, eslint-plugin-react-hooks, and eslint-plugin-jsx-a11y to be installed. Defaults to false.
+  react: false,
 
   // Enables linting JSON, JSONC, and JSON5 files. Defaults to false.
   json: false,
@@ -59,6 +62,32 @@ export default ks({
 
   // Enables linting YAML/YML files. Defaults to false.
   yml: false,
+});
+```
+
+## React Support
+
+`eslint-plugin-react`, `eslint-plugin-react-hooks`, and `eslint-plugin-jsx-a11y` must be installed to enable React support. You will also need "react" and "@types/react" if you are using TSX.
+
+```sh
+bun add -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+pnpm add -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+
+# if you don't have react installed yet, be sure to install it
+bun add react
+pnpm add react
+
+# if you are going to use tsx, don't forget the types!
+bun add -D @types/react
+pnpm add -D @types/react
+```
+
+```js
+// eslint.config.js
+import ks from "eslint-config-ks";
+
+export default ks({
+  react: true,
 });
 ```
 
