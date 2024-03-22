@@ -90,6 +90,9 @@ export default ks({
 You can enable prettier support by setting `prettier` to `true`. You will need to supply your own `.prettierrc`, and for Svelte, Svelte, and TOML, setup prettier plugins to function with them. You can then override the prettier rule, as this config disables it to prevent parsing errors.
 
 ```js
+// eslint.config.js
+import ks from "eslint-config-ks";
+
 export default ks(
   {
     prettier: true,
