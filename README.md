@@ -1,6 +1,6 @@
 # [eslint-config-ks][package]
 
-eslint-config-ks is a strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, React, Svelte, Astro, Vue, and more. It is designed to be easily configurable and deployable to most types of projects with little effort to get working.
+eslint-config-ks is a strict and customizable "kitchen sink" ESLint config library featuring support for ESM, TypeScript, React, Svelte, Astro, Vue, and more. It is designed to be easily configurable and deployable to most types of projects with little effort to get working.
 
 Currently, eslint-config-ks supports ESM, TypeScript, React, Svelte, Astro, Vue, JSON, Markdown, TOML, and YAML.
 
