@@ -1,10 +1,5 @@
 // @ts-check
 
-/**
- * TOML config
- * This config is for enabling TOML (Tomlin) support.
- */
-
 import eslintPluginTOML from "eslint-plugin-toml";
 import tomlParser from "toml-eslint-parser";
 

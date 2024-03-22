@@ -1,17 +1,15 @@
 # [eslint-config-ks][package]
 
-A strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, JSON, React, and more.
+eslint-config-ks is a strict and customizable "kitchen sink" ESLint config featuring support for ESM, TypeScript, React, Svelte, Astro, Vue, and more. It is designed to be easily configurable and deployable to most types of projects with little effort to get working.
 
-eslint-config-ks is a "kitchen sink" ESLint config designed to be easily configurable and deployable regardless of the type of project you are working on.
-
-eslint-config-ks deploys strict but sane rules for ESM, TypeScript, React, Svelte, JSON, Markdown, TOML, and YAML currently.
+Currently, eslint-config-ks supports ESM, TypeScript, React, Svelte, Astro, Vue, JSON, Markdown, TOML, and YAML.
 
 ## Install
 
 ```sh
 # be sure you are installing the latest version of ESLint!
 # pnpm, replace with your package manager of choice
-# if you are using react or svelte, don't miss the below documentation!
+# if you are using react, svelte, astro, or vue, read below!
 pnpm add -D eslint eslint-config-ks
 
 # bun
@@ -42,7 +40,7 @@ module.exports = ks();
 
 ## Options
 
-eslint-config-ks is designed to be plug-and-play for most forms of projects, and operates on an "opt in" design. By default, it only enables support for JavaScript and TypeScript linting. You can easily enable support for additional languages and libraries by configuring it, however.
+By default, eslint-plugin-ks only enables support for JavaScript and TypeScript linting. You can easily enable support for additional languages and libraries by configuring it, as eslint-plugin-ks operates on an "opt in" design. Some supported libraries/languages require the installation of additional dependencies. More information is provided below.
 
 ```js
 // eslint.config.js
@@ -67,6 +65,12 @@ export default ks({
   // Enables Svelte support. Requires eslint-plugin-svelte, svelte-eslint-parser, and svelte to be installed. Defaults to false.
   svelte: false,
 
+  // Enables Astro support. Requires eslint-plugin-astro, eslint-plugin-jsx-a11y, and astro-eslint-parser to be installed. Defaults to false.
+  astro: false,
+
+  // Enables Vue support. Requires eslint-plugin-vue and vue-eslint-parser to be installed. Defaults to false.
+  vue: false,
+
   // Enables linting JSON, JSONC, and JSON5 files. Defaults to false.
   json: false,
 
@@ -79,6 +83,30 @@ export default ks({
   // Enables linting YAML/YML files. Defaults to false.
   yml: false,
 });
+```
+
+## Prettier Support
+
+You can enable prettier support by setting `prettier` to `true`. You will need to supply your own `.prettierrc`, and for Svelte, Svelte, and TOML, setup prettier plugins to function with them. You can then override the prettier rule, as this config disables it to prevent parsing errors.
+
+```js
+export default ks(
+  {
+    prettier: true,
+  },
+  [
+    {
+      // Example: Enabling Svelte prettier support
+      // Be sure you install prettier-plugin-svelte,
+      // and that you configure it in your .prettierc.
+      // https://github.com/sveltejs/prettier-plugin-svelte
+      files: ["**/*.svelte"],
+      rules: {
+        "prettier/prettier": "warn",
+      },
+    },
+  ],
+);
 ```
 
 ## React Support
@@ -104,6 +132,8 @@ import ks from "eslint-config-ks";
 
 export default ks({
   react: true,
+  // Enable if you want to typecheck
+  // typescript: true
 });
 ```
 
@@ -122,6 +152,48 @@ import ks from "eslint-config-ks";
 
 export default ks({
   svelte: true,
+  // Enable if you want to typecheck
+  // typescript: true,
+});
+```
+
+## Astro Support
+
+`eslint-plugin-astro`, `eslint-plugin-jsx-a11y`, and `astro-eslint-parser` must be installed to enable Astro support.
+
+```sh
+bun add -D eslint-plugin-astro eslint-plugin-jsx-a11y astro-eslint-parser
+pnpm add -D eslint-plugin-astro eslint-plugin-jsx-a11y astro-eslint-parser
+```
+
+```js
+// eslint.config.js
+import ks from "eslint-config-ks";
+
+export default ks({
+  astro: true,
+  // Enable if you want to typecheck
+  // typescript: true,
+});
+```
+
+## Vue Support
+
+`eslint-plugin-vue` and `vue-eslint-parser` must be installed to enable Vue support.
+
+```sh
+bun add -D eslint-plugin-vue eslint-plugin-vue-eslint-parser
+pnpm add -D eslint-plugin-vue eslint-plugin-vue-eslint-parser
+```
+
+```js
+// eslint.config.js
+import ks from "eslint-config-ks";
+
+export default ks({
+  vue: true,
+  // Enable if you want to typecheck
+  // typescript: true,
 });
 ```
 
@@ -136,12 +208,13 @@ import ks from "eslint-config-ks";
 export default ks(
   {
     // Additional options go here, if left blank the defaults are loaded
+    // See above for all options
   },
   [
     {
-      files: ["**/*.tsx"],
+      files: ["**/*.{jsx,tsx}"],
       rules: {
-        example: "off",
+        exampleRule: "off",
       },
       // ....so on, and so forth
     },
@@ -163,11 +236,12 @@ You may need to add the following options to `.vscode/settings.json` or your VSC
 
   // Auto fix support
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
 
   // Validate supported languages
   "eslint.validate": [
+    "astro",
     "javascript",
     "javascriptreact",
     "typescript",
@@ -175,9 +249,10 @@ You may need to add the following options to `.vscode/settings.json` or your VSC
     "markdown",
     "json",
     "jsonc",
-    "yaml",
+    "svelte",
     "toml",
-    "svelte"
+    "vue",
+    "yaml"
   ]
 }
 ```

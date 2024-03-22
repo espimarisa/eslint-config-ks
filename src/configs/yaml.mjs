@@ -1,10 +1,5 @@
 // @ts-check
 
-/**
- * YML config
- * This config is for enabling YML/YAML support
- */
-
 import eslintPluginYML from "eslint-plugin-yml";
 import ymlParser from "yaml-eslint-parser";
 

@@ -1,0 +1,29 @@
+name: "Push Testing"
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      # Checks out git
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Sets Bun.js up
+      - name: Use Bun.js
+        uses: oven-sh/setup-bun@v1.2.0
+        with:
+          bun-version: latest
+
+      # Runs any test scripts
+      - name: Unit Tests
+        run: |
+          bun install
+          bun run test
+        env:
+          CI: true

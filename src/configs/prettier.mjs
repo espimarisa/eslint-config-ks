@@ -1,10 +1,5 @@
 // @ts-check
 
-/**
- * Prettier config
- * This config is for enabling Prettier support.
- */
-
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 
 import prettierRules from "../rules/prettier.mjs";

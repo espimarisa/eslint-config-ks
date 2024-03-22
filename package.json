@@ -2,7 +2,7 @@
   "name": "eslint-config-ks",
   "type": "module",
   "version": "0.0.0-rc.2",
-  "description": "A strict and customizable \"kitchen sink\" ESLint config featuring support for ESM, TypeScript, JSON, Markdown, and more.",
+  "description": "A strict and customizable \"kitchen sink\" ESLint config featuring support for ESM, TypeScript, React, Svelte, Astro, Vue, and more.",
   "author": "Espi Marisa <contact@espi.me> (https://espi.me)",
   "license": "zlib",
   "homepage": "https://github.com/espimarisa/eslint-config",
@@ -31,38 +31,58 @@
   ],
   "types": "./dist/index.d.mts",
   "scripts": {
+    "lint": "eslint .",
     "prepublish": "bun run build",
+    "test": "tsc --noEmit --emitDeclarationOnly false && eslint .",
     "build": "tsc"
   },
   "peerDependencies": {
+    "astro-eslint-parser": "^0.16.3",
     "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^0.32.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-svelte": "^v2.36.0-next.12",
+    "eslint-plugin-vue": "^9.23.0",
     "svelte": "^4.2.12",
-    "svelte-eslint-parser": "^v0.34.0-next.12"
+    "svelte-eslint-parser": "^v0.34.0-next.12",
+    "vue-eslint-parser": "^9.4.2"
   },
   "peerDependenciesMeta": {
-    "eslint-plugin-jsx-a11y": {
+    "eslint-plugin-react": {
       "optional": true
     },
-    "eslint-plugin-react": {
+    "eslint-plugin-jsx-a11y": {
       "optional": true
     },
     "eslint-plugin-svelte": {
       "optional": true
     },
+    "svelte-eslint-parser": {
+      "optional": true
+    },
     "svelte": {
       "optional": true
     },
-    "svelte-eslint-parser": {
+    "eslint-plugin-astro": {
+      "optional": true
+    },
+    "astro-eslint-parser": {
+      "optional": true
+    },
+    "eslint-plugin-vue": {
+      "optional": true
+    },
+    "vue-eslint-parser": {
       "optional": true
     }
   },
   "dependencies": {
     "@eslint/js": "^8.57.0",
+    "astro-eslint-parser": "^0.16.3",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^0.32.0",
     "eslint-plugin-import-x": "^0.4.1",
     "eslint-plugin-jsonc": "^2.14.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -77,13 +97,16 @@
     "eslint-plugin-svelte": "^v2.36.0-next.12",
     "eslint-plugin-toml": "^0.10.0",
     "eslint-plugin-unicorn": "^51.0.1",
+    "eslint-plugin-vue": "^9.23.0",
     "eslint-plugin-yml": "^1.13.2",
+    "espree": "^10.0.1",
     "globals": "^14.0.0",
     "jsonc-eslint-parser": "^2.4.0",
     "svelte": "^4.2.12",
     "svelte-eslint-parser": "^v0.34.0-next.12",
     "toml-eslint-parser": "^0.9.3",
     "typescript-eslint": "^7.3.1",
+    "vue-eslint-parser": "^9.4.2",
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {

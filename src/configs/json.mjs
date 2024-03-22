@@ -1,16 +1,12 @@
 // @ts-check
 
-/**
- * JSON config
- * This config is for enabling JSON and JSON5 support.
- */
-
 import eslintPluginJsonC from "eslint-plugin-jsonc";
 import jsoncEslintParser from "jsonc-eslint-parser";
 
 import jsonCRules, { json5Rules } from "../rules/json.mjs";
 
 /** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
+// JSON and JSONC config
 export const jsonConfig = {
   files: ["**/*.{json,jsonc}"],
   languageOptions: {
@@ -25,6 +21,7 @@ export const jsonConfig = {
 };
 
 /** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
+// JSON5 config
 export const json5Config = {
   // JSON5 support
   files: ["**/*.{json5}"],

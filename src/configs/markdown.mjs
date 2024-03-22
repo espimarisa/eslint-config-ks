@@ -1,10 +1,5 @@
 // @ts-check
 
-/**
- * Markdown config
- * This config is for enabling Markdown support.
- */
-
 // @ts-expect-error Library has no typings
 import eslintPluginMarkdown from "eslint-plugin-markdown";
 

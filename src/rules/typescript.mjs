@@ -1,7 +1,28 @@
 // @ts-check
 
+import tseslint from "typescript-eslint";
+
+/**
+ * Generates an object of TS rules
+ * @param {boolean | undefined} enabled Whether or not TypeScript is enabled
+ * @returns An rule thing
+ */
+
+export const generateTypescriptRules = (enabled) => {
+  // Return nothing if TS is off
+  if (!enabled) {
+    return {};
+  }
+
+  return typescriptRules;
+};
+
 /** @type {import("eslint").Linter.RulesRecord} */
+
 const typescriptRules = {
+  ...tseslint.configs["strictTypeChecked"][1]?.rules,
+  ...tseslint.configs["strictTypeChecked"][2]?.rules,
+
   // TypeScript rules that are a bit too annoying for my liking
   "@typescript-eslint/no-unsafe-argument": "off",
   "@typescript-eslint/no-unsafe-assignment": "off",

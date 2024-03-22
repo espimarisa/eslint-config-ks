@@ -1,10 +1,5 @@
 // @ts-check
 
-/**
- * Base ESLint Config
- * This is the base ESLint config shared by both the base ESM and TypeScript config
- */
-
 import eslintPluginImportX from "eslint-plugin-import-x";
 // @ts-expect-error Library has no typings
 import eslintPluginNode from "eslint-plugin-n";
@@ -26,7 +21,7 @@ import securityRules from "../rules/security.mjs";
 import unicornRules from "../rules/unicorn.mjs";
 
 /** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
-const baseConfig = {
+export const baseConfig = {
   // Universal rules for both TS and JS
   files: ["**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}"],
   languageOptions: {
@@ -76,5 +71,3 @@ const baseConfig = {
     "unicorn": eslintPluginUnicorn,
   },
 };
-
-export default baseConfig;
