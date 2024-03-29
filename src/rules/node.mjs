@@ -9,6 +9,7 @@ const nodeRules = {
 
   // Breakage
   "n/no-missing-import": "off",
+  "n/no-unpublished-import": "off"
 };
 
 export default nodeRules;
