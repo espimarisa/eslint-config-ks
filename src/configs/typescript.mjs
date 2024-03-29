@@ -24,6 +24,7 @@ export const typescriptConfig = (enabled, project) => {
       parser: tseslint.parser,
       parserOptions: {
         project: project ?? true,
+        extraFileExtensions: [".astro", ".svelte", ".vue"],
       },
     },
     settings: {

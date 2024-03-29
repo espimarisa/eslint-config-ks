@@ -53,7 +53,6 @@ export const astroConfig = (typescript, project) => {
         // TS support
         project: project ?? true,
         parser: typescript ? tseslint.parser : espree,
-        extraFileExtensions: [".astro"],
       },
     },
     rules: {

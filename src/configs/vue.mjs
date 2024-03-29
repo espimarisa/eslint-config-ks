@@ -49,7 +49,6 @@ export const vueConfig = (typescript, project) => {
         // TS support
         project: project ?? true,
         parser: typescript ? tseslint.parser : espree,
-        extraFileExtensions: [".vue"],
       },
     },
     rules: {
