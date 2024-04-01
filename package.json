@@ -43,6 +43,7 @@
     "@eslint/js": "^8.57.0",
     "astro-eslint-parser": "^0.16.3",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-astro": "^0.33.1",
     "eslint-plugin-import-x": "^0.4.4",
     "eslint-plugin-jsonc": "^2.14.1",
