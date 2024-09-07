@@ -4,6 +4,10 @@ eslint-config-ks is a strict and customizable "kitchen sink" ESLint config libra
 
 Currently, eslint-config-ks supports ESM, TypeScript, React, Svelte, Astro, Vue, JSON, Markdown, TOML, and YAML.
 
+# Maintenence Mode
+
+I do not use ESLint anymore. I have migrated all of my projects to [Biome][biome]. Only breaking issues will be fixed.
+
 ## Install
 
 ```sh
@@ -264,5 +268,6 @@ You may need to add the following options to `.vscode/settings.json` or your VSC
 
 [zlib/libpng][license]
 
+[biome]: https://biomejs.dev "A link to Biome's website."
 [package]: https://www.npmjs.com/package/eslint-config-ks "A link to eslint-config-ks on npmjs."
 [license]: LICENSE.md "A link to the zlib/libpng license."

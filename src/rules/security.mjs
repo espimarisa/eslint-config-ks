@@ -5,7 +5,7 @@ import eslintPluginSecurity from "eslint-plugin-security";
 
 /** @type {import("eslint").Linter.RulesRecord} */
 const securityRules = {
-  ...eslintPluginSecurity.configs.recommended.rules,
+	...eslintPluginSecurity.configs.recommended.rules,
 };
 
 export default securityRules;

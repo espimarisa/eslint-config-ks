@@ -34,45 +34,45 @@ import { ymlConfig } from "./configs/yaml.mjs";
 /**
  * Generates an ESLint config
  * @param {ConfigOptions | undefined} [options] An object of config options.
- * @param {import("eslint").Linter.FlatConfig[] | undefined} [configs] An array of flat ESLint configs to append to the existing config.
+ * @param {import("eslint").Linter.Config[] | undefined} [configs] An array of flat ESLint configs to append to the existing config.
  */
 
 export default (options, configs) => {
-  const isTSDisabled = options?.typescript === false;
+	const isTSDisabled = options?.typescript === false;
 
-  const config = tseslint.config(
-    {
-      // Files and paths to ignores, overriden by options.ignoresPath
-      ignores: options?.ignores || ["**/node_modules/*", "**/dist/*"],
-    },
+	const config = tseslint.config(
+		{
+			// Files and paths to ignores, overriden by options.ignoresPath
+			ignores: options?.ignores || ["**/node_modules/*", "**/dist/*"],
+		},
 
-    // Base config for both ESM and TS
-    { ...baseConfig },
+		// Base config for both ESM and TS
+		{ ...baseConfig },
 
-    // JS only options
-    { ...javascriptConfig },
+		// JS only options
+		{ ...javascriptConfig },
 
-    // Enables TypeScript
-    options?.typescript === false ? {} : { ...typescriptConfig(!isTSDisabled, options?.project) },
+		// Enables TypeScript
+		options?.typescript === false ? {} : { ...typescriptConfig(!isTSDisabled, options?.project) },
 
-    options?.react ? { ...reactConfig(!isTSDisabled, options.project) } : {},
-    options?.vue ? { ...vueConfig(!isTSDisabled, options.project) } : {},
+		options?.react ? { ...reactConfig(!isTSDisabled, options.project) } : {},
+		options?.vue ? { ...vueConfig(!isTSDisabled, options.project) } : {},
 
-    options?.markdown ? { ...markdownConfig } : {},
-    options?.json ? { ...jsonConfig, ...json5Config } : {},
-    options?.yml ? { ...ymlConfig } : {},
+		options?.markdown ? { ...markdownConfig } : {},
+		options?.json ? { ...jsonConfig, ...json5Config } : {},
+		options?.yml ? { ...ymlConfig } : {},
 
-    // Load prettier as late as possible
-    options?.prettier ? { ...prettierConfig } : {},
+		// Load prettier as late as possible
+		options?.prettier ? { ...prettierConfig } : {},
 
-    // These break with prettier, so we load them after it
-    options?.svelte ? { ...svelteConfig(!isTSDisabled, options.project) } : {},
-    options?.astro ? { ...astroConfig(!isTSDisabled, options.project) } : {},
-    options?.toml ? { ...tomlConfig } : {},
+		// These break with prettier, so we load them after it
+		options?.svelte ? { ...svelteConfig(!isTSDisabled, options.project) } : {},
+		options?.astro ? { ...astroConfig(!isTSDisabled, options.project) } : {},
+		options?.toml ? { ...tomlConfig } : {},
 
-    // Allows custom config overrides, load last
-    ...(configs ?? []),
-  );
+		// Allows custom config overrides, load last
+		...(configs ?? []),
+	);
 
-  return config;
+	return config;
 };

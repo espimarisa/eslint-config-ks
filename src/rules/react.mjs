@@ -9,12 +9,12 @@ import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 
 /** @type {import("eslint").Linter.RulesRecord} */
 const reactRules = {
-  ...eslintPluginReact.configs.recommended.rules,
-  ...eslintPluginJSXA11y.configs.recommended.rules,
-  ...eslintPluginReactHooks.configs.recommended.rules,
+	...eslintPluginReact.configs.recommended.rules,
+	...eslintPluginJSXA11y.configs.recommended.rules,
+	...eslintPluginReactHooks.configs.recommended.rules,
 
-  // Breakage!
-  "n/no-unpublished-import": "off",
+	// Breakage!
+	"n/no-unpublished-import": "off",
 };
 
 export default reactRules;

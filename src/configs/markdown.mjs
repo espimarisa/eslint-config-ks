@@ -7,12 +7,12 @@ import markdownRules from "../rules/markdown.mjs";
 
 /** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
 export const markdownConfig = {
-  files: ["**/*.{markdown,md}"],
-  processor: "markdown/markdown",
-  plugins: {
-    markdown: eslintPluginMarkdown,
-  },
-  rules: {
-    ...markdownRules,
-  },
+	files: ["**/*.{markdown,md}"],
+	processor: "markdown/markdown",
+	plugins: {
+		markdown: eslintPluginMarkdown,
+	},
+	rules: {
+		...markdownRules,
+	},
 };

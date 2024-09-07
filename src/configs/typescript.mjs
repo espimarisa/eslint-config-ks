@@ -12,35 +12,37 @@ import { generateTypescriptRules } from "../rules/typescript.mjs";
  */
 
 export const typescriptConfig = (enabled, project) => {
-  if (enabled === false) return {};
+	if (enabled === false) {
+		return {};
+	}
 
-  /** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
-  const config = {
-    // TypeScript config
-    files: ["**/*.{cts,mts,ts,tsx}"],
+	/** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
+	const config = {
+		// TypeScript config
+		files: ["**/*.{cts,mts,ts,tsx}"],
 
-    // Enables typescript-eslint parser
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: project ?? true,
-        extraFileExtensions: [".astro", ".svelte", ".vue"],
-      },
-    },
-    settings: {
-      "import-x/resolver": {
-        node: true,
-        typescript: true,
-      },
-    },
-    plugins: {
-      // Enables @typescript-eslint plugin
-      "@typescript-eslint": tseslint.plugin,
-    },
-    rules: {
-      ...generateTypescriptRules(enabled),
-    },
-  };
+		// Enables typescript-eslint parser
+		languageOptions: {
+			parser: tseslint.parser,
+			parserOptions: {
+				project: project ?? true,
+				extraFileExtensions: [".astro", ".svelte", ".vue"],
+			},
+		},
+		settings: {
+			"import-x/resolver": {
+				node: true,
+				typescript: true,
+			},
+		},
+		plugins: {
+			// Enables @typescript-eslint plugin
+			"@typescript-eslint": tseslint.plugin,
+		},
+		rules: {
+			...generateTypescriptRules(enabled),
+		},
+	};
 
-  return config;
+	return config;
 };

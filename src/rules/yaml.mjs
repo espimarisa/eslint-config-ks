@@ -5,7 +5,7 @@ import ymlPlugin from "eslint-plugin-yml";
 
 // @ts-expect-error This typing is not up to date
 const yamlRules = {
-  ...ymlPlugin.configs.recommended.rules,
+	...ymlPlugin.configs.recommended.rules,
 };
 
 export default yamlRules;

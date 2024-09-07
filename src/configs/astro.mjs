@@ -5,15 +5,12 @@ import eslintPluginAstro from "eslint-plugin-astro";
 import eslintPluginImportX from "eslint-plugin-import-x";
 // @ts-expect-error This library has no typings
 import eslintPluginJSXA11y from "eslint-plugin-jsx-a11y";
-// @ts-expect-error Library has no typings
 import eslintPluginNode from "eslint-plugin-n";
 // @ts-expect-error Library has no typings
 import eslintPluginPromise from "eslint-plugin-promise";
 // @ts-expect-error Library has no typings
 import eslintPluginSecurity from "eslint-plugin-security";
-// @ts-expect-error Library has no typings
 import eslintPluginSimpleImportSort from "eslint-plugin-simple-import-sort";
-// @ts-expect-error Library has no typings
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 // @ts-expect-error This library has no typings
 import * as espree from "espree";
@@ -31,36 +28,36 @@ import { generateTypescriptRules } from "../rules/typescript.mjs";
  */
 
 export const astroConfig = (typescript, project) => {
-  /** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
-  const config = {
-    // .astro files
-    files: ["**/*.astro"],
-    plugins: {
-      "astro": eslintPluginAstro,
-      "@typescript-eslint": tseslint.plugin,
-      "jsx-a11y": eslintPluginJSXA11y,
-      "import-x": eslintPluginImportX,
-      "n": eslintPluginNode,
-      "promise": eslintPluginPromise,
-      "security": eslintPluginSecurity,
-      "simple-import-sort": eslintPluginSimpleImportSort,
-      "unicorn": eslintPluginUnicorn,
-    },
-    processor: eslintPluginAstro.processors[".astro"],
-    languageOptions: {
-      parser: astroEslintParser,
-      parserOptions: {
-        // TS support
-        project: project ?? true,
-        parser: typescript ? tseslint.parser : espree,
-      },
-    },
-    rules: {
-      ...extendedBaseRules,
-      ...generateTypescriptRules(typescript),
-      ...astroRules,
-    },
-  };
+	/** @type {import("@typescript-eslint/utils").TSESLint.FlatConfig.Config} */
+	const config = {
+		// .astro files
+		files: ["**/*.astro"],
+		plugins: {
+			astro: eslintPluginAstro,
+			"@typescript-eslint": tseslint.plugin,
+			"jsx-a11y": eslintPluginJSXA11y,
+			"import-x": eslintPluginImportX,
+			n: eslintPluginNode,
+			promise: eslintPluginPromise,
+			security: eslintPluginSecurity,
+			"simple-import-sort": eslintPluginSimpleImportSort,
+			unicorn: eslintPluginUnicorn,
+		},
+		processor: eslintPluginAstro.processors[".astro"],
+		languageOptions: {
+			parser: astroEslintParser,
+			parserOptions: {
+				// TS support
+				project: project ?? true,
+				parser: typescript ? tseslint.parser : espree,
+			},
+		},
+		rules: {
+			...extendedBaseRules,
+			...generateTypescriptRules(typescript),
+			...astroRules,
+		},
+	};
 
-  return config;
+	return config;
 };

@@ -1,82 +1,84 @@
 {
-  "name": "eslint-config-ks",
-  "type": "module",
-  "version": "5.0.4",
-  "description": "A strict and customizable \"kitchen sink\" ESLint config library featuring support for ESM, TypeScript, React, Svelte, Astro, Vue, and more.",
-  "author": "Espi Marisa <contact@espi.me> (https://espi.me)",
-  "license": "zlib",
-  "homepage": "https://github.com/espimarisa/eslint-config-ks",
-  "main": "./src/index.mjs",
-  "bugs": {
-    "url": "https://github.com/espimarisa/eslint-config-ks"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/espimarisa/eslint-config-ks.git"
-  },
-  "files": [
-    "./src/**/*"
-  ],
-  "keywords": [
-    "code style",
-    "config",
-    "eslint",
-    "eslint config",
-    "lint",
-    "linter",
-    "prettier",
-    "prettier-eslint",
-    "quality",
-    "style"
-  ],
-  "types": "./dist/index.d.mts",
-  "scripts": {
-    "lint": "eslint .",
-    "prepublish": "bun run build",
-    "test": "tsc --noEmit --emitDeclarationOnly false && eslint .",
-    "build": "tsc"
-  },
-  "peerDependencies": {
-    "eslint": "^8.57.0"
-  },
-  "dependencies": {
-    "@eslint/js": "^8.57.0",
-    "astro-eslint-parser": "^0.16.3",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-astro": "^0.33.1",
-    "eslint-plugin-import-x": "^0.4.4",
-    "eslint-plugin-jsonc": "^2.14.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-markdown": "^4.0.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-security": "^2.1.1",
-    "eslint-plugin-simple-import-sort": "^12.0.0",
-    "eslint-plugin-svelte": "^v2.36.0-next.12",
-    "eslint-plugin-toml": "^0.10.0",
-    "eslint-plugin-unicorn": "^51.0.1",
-    "eslint-plugin-vue": "^9.24.0",
-    "eslint-plugin-yml": "^1.13.2",
-    "espree": "^10.0.1",
-    "globals": "^15.0.0",
-    "jsonc-eslint-parser": "^2.4.0",
-    "svelte": "^4.2.12",
-    "svelte-eslint-parser": "^v0.34.0-next.12",
-    "toml-eslint-parser": "^0.9.3",
-    "typescript-eslint": "^7.4.0",
-    "vue-eslint-parser": "^9.4.2",
-    "yaml-eslint-parser": "^1.2.2"
-  },
-  "devDependencies": {
-    "@types/eslint": "^8.56.6",
-    "@types/eslint__js": "^8.42.3",
-    "@typescript-eslint/utils": "^7.4.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
-  }
+	"name": "eslint-config-ks",
+	"type": "module",
+	"version": "5.1.0",
+	"description": "A strict and customizable \"kitchen sink\" ESLint config library featuring support for ESM, TypeScript, React, Svelte, Astro, Vue, and more.",
+	"author": "Espi Marisa <contact@espi.me> (https://espi.me)",
+	"license": "zlib",
+	"homepage": "https://github.com/espimarisa/eslint-config-ks",
+	"main": "./src/index.mjs",
+	"bugs": {
+		"url": "https://github.com/espimarisa/eslint-config-ks"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/espimarisa/eslint-config-ks.git"
+	},
+	"files": ["./src/**/*"],
+	"keywords": [
+		"code style",
+		"config",
+		"eslint",
+		"eslint config",
+		"lint",
+		"linter",
+		"prettier",
+		"prettier-eslint",
+		"quality",
+		"style"
+	],
+	"types": "./dist/index.d.mts",
+	"scripts": {
+		"lint": "eslint .",
+		"format": "biome format --write .",
+		"prepublish": "bun run build",
+		"test": "tsc --noEmit --emitDeclarationOnly false && bun run test:biome",
+		"test:biome": "biome lint",
+		"build": "tsc"
+	},
+	"peerDependencies": {
+		"eslint": "^9.10.0"
+	},
+	"dependencies": {
+		"@eslint/js": "^9.10.0",
+		"astro-eslint-parser": "^1.0.2",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-import-resolver-typescript": "^3.6.3",
+		"eslint-plugin-astro": "^1.2.3",
+		"eslint-plugin-import-x": "^4.2.1",
+		"eslint-plugin-jsonc": "^2.16.0",
+		"eslint-plugin-jsx-a11y": "^6.10.0",
+		"eslint-plugin-markdown": "^5.1.0",
+		"eslint-plugin-n": "^17.10.2",
+		"eslint-plugin-prettier": "^5.2.1",
+		"eslint-plugin-promise": "^7.1.0",
+		"eslint-plugin-react": "^7.35.2",
+		"eslint-plugin-react-hooks": "^4.6.2",
+		"eslint-plugin-security": "^3.0.1",
+		"eslint-plugin-simple-import-sort": "^12.1.1",
+		"eslint-plugin-svelte": "^2.43.0",
+		"eslint-plugin-toml": "^0.11.1",
+		"eslint-plugin-unicorn": "^55.0.0",
+		"eslint-plugin-vue": "^9.28.0",
+		"eslint-plugin-yml": "^1.14.0",
+		"espree": "^10.1.0",
+		"globals": "^15.9.0",
+		"jsonc-eslint-parser": "^2.4.0",
+		"svelte": "^4.2.19",
+		"svelte-eslint-parser": "^0.41.0",
+		"toml-eslint-parser": "^0.10.0",
+		"typescript-eslint": "^8.4.0",
+		"vue-eslint-parser": "^9.4.3",
+		"yaml-eslint-parser": "^1.2.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@types/eslint": "^9.6.1",
+		"@types/eslint__js": "^8.42.3",
+		"@typescript-eslint/utils": "^8.4.0",
+		"bun-types": "^1.1.26",
+		"eslint": "^8.57.0",
+		"prettier": "^3.3.3",
+		"typescript": "^5.5.4"
+	}
 }
