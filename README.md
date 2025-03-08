@@ -4,7 +4,7 @@ eslint-config-ks is a strict and customizable "kitchen sink" ESLint config libra
 
 Currently, eslint-config-ks supports ESM, TypeScript, React, Svelte, Astro, Vue, JSON, Markdown, TOML, and YAML.
 
-# Maintenence Mode
+# Maintenance Mode
 
 I do not use ESLint anymore. I have migrated all of my projects to [Biome][biome]. Only breaking issues will be fixed.
 
